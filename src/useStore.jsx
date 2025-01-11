@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const initialState = {
+export const initialState = {
   email: "",
   emailError: null,
   password: "",

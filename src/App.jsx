@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useStore } from "./useStore";
+import { useStore, initialState } from "./useStore";
 import { validateEmail, validatePassword } from "./Validation";
 import { AppLayout } from "./AppLayout";
 
@@ -10,7 +10,6 @@ const sendFormData = (formData) => {
 export const App = () => {
   const { getState, updateState } = useStore();
   const submitButtonRef = useRef(null);
-
   const { email, password, passwordRepeat, emailError, passwordError } =
     getState();
 
@@ -18,13 +17,12 @@ export const App = () => {
     switch (name) {
       case "password":
         if (value === passwordRepeat) {
-          submitButtonRef.current.focus();
+          setTimeout(() => submitButtonRef.current.focus());
         }
         break;
       case "passwordRepeat":
         if (value === password) {
-          console.log(submitButtonRef);
-          submitButtonRef.current.focus();
+          setTimeout(() => submitButtonRef.current.focus());
         }
         break;
     }
@@ -49,7 +47,6 @@ export const App = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.password.value);
 
     let newError = null;
 
@@ -60,6 +57,7 @@ export const App = () => {
     }
 
     sendFormData({ email, password, passwordRepeat });
+    updateState(initialState);
   };
 
   return (
