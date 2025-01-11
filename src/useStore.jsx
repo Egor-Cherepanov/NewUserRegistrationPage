@@ -3,11 +3,9 @@ import { useState } from "react";
 const initialState = {
   email: "",
   emailError: null,
-  emailIsValid: false,
   password: "",
-  passwordRepeat: "",
   passwordError: null,
-  passwordIsValid: false,
+  passwordRepeat: "",
 };
 
 export const useStore = () => {
